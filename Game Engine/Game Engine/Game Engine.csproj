@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Graphics\Drawer2D\imageDrawer.cs" />
+    <Compile Include="Graphics\Shaders\fragShader.cs" />
+    <Compile Include="Graphics\Shaders\Shader.cs" />
+    <Compile Include="Graphics\Shaders\vertShader.cs" />
+    <Compile Include="Graphics\Textures\Texture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
