@@ -20,39 +20,39 @@ namespace Game_Engine
         private static imageDrawer drawer;
         private static Shader shader;
         private static Texture text;
+
         
         static void Main(string[] args)
         {
 
             drawer = new imageDrawer();
             window = new GameWindow(1280, 720, GraphicsMode.Default, "Game Engine");
-            text = new Texture("testTiles.jpg");
+            text = new Texture("test.png");
             window.Resize += OnResize;
             window.UpdateFrame += OnUpdateFrame;
             window.RenderFrame += OnRenderFrame;
 
             shader = new Shader();
-            
+            GL.Enable(EnableCap.Texture2D);
+
             window.Run();
         }
 
         private static void OnResize(object sender, EventArgs e)
         {
-            
+           
         }
 
         private static void OnRenderFrame(object sender, FrameEventArgs e)
         {
-
             GL.ClearColor(0,0,0,0);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
 
             shader.Bind();
             text.Bind();
-            drawer.DrawImage(0,0,1,1);
+            drawer.DrawImage(0,0,0.5f,0.5f);
 
-
-
+            GL.Flush();
             window.SwapBuffers();
         }
 
