@@ -13,8 +13,8 @@ using System.IO;
 namespace Game_Engine
 {
     class Spritebatch
-    {
-        public static void Draw(Texture2D texture,Vector2 position,Vector2 scale, Color color, Vector2 origin)
+    {                       
+        public static void Draw(Texture2D texture,Vector2 position,Vector2 scale, Color color,Vector2 origin,RectangleF? sourceRec = null)
         {
             Vector2[] vertices = new Vector2[4]
             {
@@ -39,10 +39,14 @@ namespace Game_Engine
 
             for (int i = 0; i < 4; i++)
             {
-                GL.TexCoord2(text[i]);
+                if(sourceRec == null)
+                  GL.TexCoord2(text[i]);
+               else{
+               GL.TexCoord2(sourceRec.Value.Left + text[i].X * sourceRec.Value.Width,
+               sourceRec.Value.Top + text[i].Y * sourceRec.Value.Height);
+               }
                 vertices[i].X *= texture.Width;
-                vertices[i].Y *= texture.Height;
-                vertices[i] -= origin;
+                vertices[i].Y *= texture.Height;   
                 vertices[i] *= scale;
                 vertices[i] += position;
 
@@ -54,6 +58,7 @@ namespace Game_Engine
 
         public static void Begin(int screenWidth,int screenHeight)
         {
+        int tmp = a
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
 

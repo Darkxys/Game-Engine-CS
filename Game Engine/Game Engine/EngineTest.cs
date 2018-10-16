@@ -49,11 +49,11 @@ namespace Game_Engine
 
              GL.Clear(ClearBufferMask.ColorBufferBit);
 
-             Spritebatch.Begin(this.Width, this.Height);
+             Spritebatch.Begin( Width,  Height);
 
              UpdateRender();
 
-             this.SwapBuffers();
+              SwapBuffers();
          }
          protected virtual void toLoadStart() { }
          protected virtual void UpdateData() { }
@@ -63,11 +63,17 @@ namespace Game_Engine
 
      class MainGame : Game
      {
-         Texture2D texture;
+         public static int GRIDSIZE = 32;
+         GameObject[] layers;
+         Texture2D texture,tileset;
+         Map map;
          public MainGame(int width, int height) : base(width, height) { }
          protected override void toLoadStart()
          {
-             texture = ContentPipe.LoadTexture("tileSetCol.jpg");
+            layers = new GameObject[4];
+            GameObject go = new GameObject(ContentPipe.LoadTexture("tileSetTest.png"), Vector2.Zero, new Vector2(1, 1));
+            tileset = ContentPipe.LoadTexture("tileSetTest.png");
+            map = new Map(20, 20);
          }
          protected override void UpdateData()
          {
@@ -75,7 +81,8 @@ namespace Game_Engine
          }
          protected override void UpdateRender()
          {
-            Spritebatch.Draw(texture, Vector2.Zero, new Vector2(0.5f, 0.5f), Color.White, new Vector2(10, 50));
+            //Spritebatch.Draw(texture, Vector2.Zero, new Vector2(0.5f, 0.5f), Color.White);
+            
          }
      }
      

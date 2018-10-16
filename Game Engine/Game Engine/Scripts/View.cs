@@ -36,7 +36,7 @@ namespace Game_Engine
         {
             get
             {
-                return this.position;
+                return  position;
             }
         }
         public Vector2 PositionGoTo
@@ -49,14 +49,14 @@ namespace Game_Engine
             input /= (float)zoom;
             Vector2 dX = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
             Vector2 dY = new Vector2((float)Math.Cos(rotation+MathHelper.PiOver2), (float)Math.Sin(rotation + MathHelper.PiOver2));
-            return (this.position + dX * input.X + dY * input.Y);
+            return ( position + dX * input.X + dY * input.Y);
         }
 
         public View(Vector2 startPosition,double startZoom=1.0,double startRotation = 0.0)
         {
-            this.position = startPosition;
-            this.rotation = startRotation;
-            this.zoom = startZoom;
+             position = startPosition;
+             rotation = startRotation;
+             zoom = startZoom;
         }
 
         public void Update()
@@ -96,9 +96,9 @@ namespace Game_Engine
 
         public void SetPosition(Vector2 newPosition)
         {
-            this.position = newPosition;
-            this.positionFrom = newPosition;
-            this.positionGoTo = newPosition;
+             position = newPosition;
+             positionFrom = newPosition;
+             positionGoTo = newPosition;
             tweenType = TweenType.Instant;
             currentStep = 0;
             tweenSteps = 0;
@@ -106,9 +106,9 @@ namespace Game_Engine
 
         public void SetPosition(Vector2 newPosition,TweenType type, int numSteps)
         {
-            this.positionFrom = position;
-            this.position = newPosition;
-            this.positionGoTo = newPosition;
+             positionFrom = position;
+             position = newPosition;
+             positionGoTo = newPosition;
             tweenType = type;
             currentStep = 0;
             tweenSteps = numSteps;

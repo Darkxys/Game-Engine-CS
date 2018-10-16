@@ -50,8 +50,11 @@
     <Compile Include="Scripts\ContentPipe.cs" />
     <Compile Include="EngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\GameObject.cs" />
     <Compile Include="Scripts\Input.cs" />
+    <Compile Include="Scripts\Map.cs" />
     <Compile Include="Scripts\Spritebatch.cs" />
+    <Compile Include="Scripts\SpriteSheet.cs" />
     <Compile Include="Scripts\Texture2D.cs" />
     <Compile Include="Scripts\View.cs" />
   </ItemGroup>
@@ -69,6 +72,9 @@
     <None Include="Content\Screenshot_180924_000.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\tileSetTest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
