@@ -149,8 +149,6 @@ namespace Game_Engine
             transform = Matrix4.Mult(transform, Matrix4.CreateScale((float)zoom,(float)zoom,1.0f));
 
             GL.MultMatrix(ref transform);
-
-
         }
     }
 }

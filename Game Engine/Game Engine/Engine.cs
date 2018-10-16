@@ -15,7 +15,7 @@ namespace Game_Engine
     {
         static void Main(string[] args)
         {
-            GameWindow window = new Game(1280, 720);
+            GameWindow window = new MainGame(1280, 720);
             //window.WindowState = WindowState.Fullscreen;
             window.Run();
         }
