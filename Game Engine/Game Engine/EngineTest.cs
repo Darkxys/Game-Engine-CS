@@ -29,7 +29,9 @@ namespace Game_Engine
              : base(width, height)
          {
              GL.Enable(EnableCap.Texture2D);
-             Input.Initialize(this);
+         GL.Enable(EnableCap.Blend);
+         GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+         Input.Initialize(this);
          }
 
          protected override void OnLoad(EventArgs e)
@@ -63,27 +65,60 @@ namespace Game_Engine
 
      class MainGame : Game
      {
-         public static int GRIDSIZE = 32;
+         public static int GRIDSIZE = 32,TILESIZE = 15;
          GameObject[] layers;
          Texture2D texture,tileset;
          Map map;
-         public MainGame(int width, int height) : base(width, height) { }
+      float x1 = 0f;
+      float y1 = 0f;
+      int wow = 0;
+      View view;
+         public MainGame(int width, int height) : base(width, height)
+      {
+         GL.Enable(EnableCap.Texture2D);
+         GL.Enable(EnableCap.Blend);
+         GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+      }
          protected override void toLoadStart()
          {
-            layers = new GameObject[4];
-            GameObject go = new GameObject(ContentPipe.LoadTexture("tileSetTest.png"), Vector2.Zero, new Vector2(1, 1));
+            view = new View(Vector2.Zero,1,0);
+            layers = new GameObject[4];                                                                                    
             tileset = ContentPipe.LoadTexture("tileSetTest.png");
             map = new Map(20, 20);
          }
          protected override void UpdateData()
          {
-
+            view.SetPosition(new Vector2(wow, wow), TweenType.QuadraticInOut, 60);
+            wow+=5;
+            view.Update();         
          }
          protected override void UpdateRender()
          {
-            //Spritebatch.Draw(texture, Vector2.Zero, new Vector2(0.5f, 0.5f), Color.White);
-            
+         view.ApplyTransform();                                                             
+         float x2, y2;
+         
+         for (int x = 0; x < map.Width; x++)
+         {
+            for (int y = 0; y < map.Height; y++)
+            {
+               x2 =0.5f;
+               y2 =0.5f;
+               RectangleF source = new RectangleF(x2, y2, (float)TILESIZE, (float)TILESIZE);
+
+
+               Spritebatch.Draw(tileset, new Vector2(x * GRIDSIZE, y * GRIDSIZE), new Vector2((float)GRIDSIZE / (float)TILESIZE), Color.White, Vector2.Zero, source);
+               x2 = 16.5f;
+               y2 = 0.5f;
+               RectangleF source1 = new RectangleF(x2, y2, (float)TILESIZE, (float)TILESIZE);
+
+               Spritebatch.Draw(tileset, new Vector2(x * GRIDSIZE, y * GRIDSIZE), new Vector2((float)GRIDSIZE / (float)TILESIZE), Color.White, Vector2.Zero, source1);
+
+            }
          }
-     }
+         
+
+
+      }
+   }
      
 }

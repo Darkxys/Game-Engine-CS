@@ -14,7 +14,7 @@ namespace Game_Engine
       private Block[,] grid;
       private string fileName;
       public Point playerStartPos;
-
+      
       public Block this[int x, int y]{
          get{
             return grid[x, y];
@@ -36,25 +36,24 @@ namespace Game_Engine
       public int Height
       {
          get
-         {
+         {     
             return grid.GetLength(1);
          }
       }
 
       public Map(int width, int height){
          grid = new Block[width, height];
-         fileName = "none";
-         playerStartPos = new Point(1, 1);
+         fileName = "none";              
+         playerStartPos = new Point(0, 0);
 
          for (int x = 0; x < width; x++)
          {
             for (int y = 0; y < height; y++)
             {
-               if(x==0||y==0||x==width-1||y==height-1){
+               
                   grid[x, y] = new Block(BlockType.Solid, x, y);
-               } else{    
-                  grid[x, y] = new Block(BlockType.Empty, x, y);
-               }
+                                                                      
+               
             }
          }
       }

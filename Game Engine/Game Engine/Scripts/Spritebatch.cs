@@ -39,26 +39,25 @@ namespace Game_Engine
 
             for (int i = 0; i < 4; i++)
             {
-                if(sourceRec == null)
-                  GL.TexCoord2(text[i]);
-               else{
-               GL.TexCoord2(sourceRec.Value.Left + text[i].X * sourceRec.Value.Width,
-               sourceRec.Value.Top + text[i].Y * sourceRec.Value.Height);
-               }
-                vertices[i].X *= texture.Width;
-                vertices[i].Y *= texture.Height;   
-                vertices[i] *= scale;
-                vertices[i] += position;
-
-                GL.Vertex2(vertices[i]);
+                  if(sourceRec == null)
+                     GL.TexCoord2(text[i]);
+                  else{
+                     GL.TexCoord2((sourceRec.Value.Left + text[i].X * sourceRec.Value.Width)/texture.Width,
+                        (sourceRec.Value.Top + text[i].Y * sourceRec.Value.Height)/texture.Height);
+                  }
+                  vertices[i].X *= (sourceRec == null) ? texture.Width : sourceRec.Value.Width;
+                  vertices[i].Y *= (sourceRec == null) ? texture.Height : sourceRec.Value.Height;
+                  vertices[i] -= origin;
+                  vertices[i] *= scale;
+                  vertices[i] += position;
+            GL.Vertex2(vertices[i]);
             }
 
             GL.End();
         }
 
         public static void Begin(int screenWidth,int screenHeight)
-        {
-        int tmp = a
+        {             
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
 
