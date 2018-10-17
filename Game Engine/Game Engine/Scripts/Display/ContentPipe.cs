@@ -42,7 +42,6 @@ namespace Game_Engine
                 (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter,
                 (int)TextureMagFilter.Linear);
-
             return new Texture2D(id,bmp.Width,bmp.Height);
         }
     }

@@ -22,7 +22,7 @@ namespace Game_Engine
         BounceOut
     }
     
-    class View
+    class Camera
     {
         private Vector2 position;
         public double rotation;
@@ -52,7 +52,7 @@ namespace Game_Engine
             return ( position + dX * input.X + dY * input.Y);
         }
 
-        public View(Vector2 startPosition,double startZoom=1.0,double startRotation = 0.0)
+        public Camera(Vector2 startPosition,double startZoom=1.0,double startRotation = 0.0)
         {
              position = startPosition;
              rotation = startRotation;

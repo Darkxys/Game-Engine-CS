@@ -50,7 +50,7 @@ namespace Game_Engine
                   vertices[i] -= origin;
                   vertices[i] *= scale;
                   vertices[i] += position;
-            GL.Vertex2(vertices[i]);
+                    GL.Vertex2(vertices[i]);
             }
 
             GL.End();

@@ -69,10 +69,8 @@ namespace Game_Engine
          GameObject[] layers;
          Texture2D texture,tileset;
          Map map;
-      float x1 = 0f;
-      float y1 = 0f;
       int wow = 0;
-      View view;
+      Camera camera;
          public MainGame(int width, int height) : base(width, height)
       {
          GL.Enable(EnableCap.Texture2D);
@@ -81,20 +79,20 @@ namespace Game_Engine
       }
          protected override void toLoadStart()
          {
-            view = new View(Vector2.Zero,1,0);
+            camera = new Camera(Vector2.Zero,1,0);
             layers = new GameObject[4];                                                                                    
             tileset = ContentPipe.LoadTexture("tileSetTest.png");
             map = new Map(20, 20);
          }
          protected override void UpdateData()
          {
-            view.SetPosition(new Vector2(wow, wow), TweenType.QuadraticInOut, 60);
+            camera.SetPosition(new Vector2(wow, wow), TweenType.QuadraticInOut, 60);
             wow+=5;
-            view.Update();         
+            camera.Update();         
          }
          protected override void UpdateRender()
          {
-         view.ApplyTransform();                                                             
+         camera.ApplyTransform();                                                             
          float x2, y2;
          
          for (int x = 0; x < map.Width; x++)
